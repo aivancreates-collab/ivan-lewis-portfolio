@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivan Lewis — Writer. Director.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+:root{
+  --off-white:#f4f2ed;
+  --ink:#191714;
+  --ink-mid:#4a4740;
+  --ink-muted:#7a7770;
+  --ink-faint:#b5b2ab;
+  --rule:rgba(25,23,20,0.1);
+  --rule-mid:rgba(25,23,20,0.16);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono','Courier New',monospace;
+  --dark-bg:#0f0e0b;
+  --dark-surface:#1a1814;
+}
+body{
+  background:var(--off-white);color:var(--ink);
+  font-family:var(--serif);-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;cursor:none;
+}
+.cursor{
+  position:fixed;width:7px;height:7px;background:var(--ink);
+  border-radius:50%;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.18s ease,opacity 0.3s ease;
+  mix-blend-mode:multiply;
+}
+.cursor.expanded{transform:translate(-50%,-50%) scale(5);opacity:0.1;}
+.grain{
+  position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:0.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.75rem 4rem;border-bottom:0.5px solid transparent;
+  transition:background 0.5s ease,border-color 0.5s ease;
+}
+nav.scrolled{
+  background:rgba(244,242,237,0.93);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-color:var(--rule);
+}
+.nav-wordmark{
+  font-family:var(--serif);font-size:13px;letter-spacing:0.04em;
+  color:var(--ink);text-decoration:none;
+  opacity:0;transition:opacity 0.5s ease;
+}
+nav.scrolled .nav-wordmark{opacity:1;}
+.nav-links{display:flex;gap:2.8rem;list-style:none;}
+.nav-links a{
+  font-family:var(--mono);font-size:10px;font-weight:300;
+  letter-spacing:0.12em;color:var(--ink-muted);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--ink);}
+.hero{
+  position:relative;height:100vh;min-height:620px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 4rem 4.5rem;overflow:hidden;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0;}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,
+    rgba(244,242,237,0) 0%,rgba(244,242,237,0.08) 35%,
+    rgba(244,242,237,0.65) 72%,rgba(244,242,237,1) 100%);
+}
+.hero-content{position:relative;z-index:2;}
+.hero-name{
+  font-family:var(--serif);font-size:clamp(70px,9.5vw,124px);
+  font-weight:400;letter-spacing:-0.025em;line-height:0.9;color:var(--ink);
+  opacity:0;transform:translateY(30px);
+  animation:riseIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+}
+.hero-role{
+  font-family:var(--mono);font-size:10px;font-weight:300;
+  letter-spacing:0.15em;color:var(--ink-muted);margin-top:1.3rem;
+  opacity:0;animation:fadeUp 1s ease 1.1s forwards;
+}
+.hero-scroll{
+  position:absolute;bottom:4.5rem;right:4rem;z-index:2;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;
+  color:var(--ink-faint);writing-mode:vertical-rl;
+  opacity:0;animation:fadeUp 1s ease 2s forwards;
+}
+@keyframes riseIn{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{to{opacity:1;}}
+.rule{width:100%;height:0.5px;background:var(--rule);}
+.section-label{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.16em;color:var(--ink-faint);
+  margin-bottom:3.5rem;display:block;
+}
+.section-studio{padding:6rem 4rem;}
+.work-entry{border-top:0.5px solid var(--rule-mid);}
+.work-entry:last-child{border-bottom:0.5px solid var(--rule-mid);}
+.work-header{
+  padding:2.6rem 0;cursor:pointer;
+  display:grid;grid-template-rows:auto auto auto;
+  transition:padding-left 0.38s cubic-bezier(0.16,1,0.3,1);
+  user-select:none;
+}
+.work-header:hover{padding-left:0.8rem;}
+.work-title{
+  font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);
+  font-weight:400;letter-spacing:-0.015em;line-height:1.15;
+  color:var(--ink);margin-bottom:0.55rem;
+}
+.work-question{
+  font-family:var(--serif);font-size:15px;font-style:italic;
+  color:var(--ink-muted);line-height:1.5;margin-bottom:1.4rem;
+}
+.work-footer-row{display:flex;justify-content:space-between;align-items:center;}
+.work-format{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.12em;color:var(--ink-faint);
+}
+.work-date-toggle{display:flex;align-items:center;gap:1.5rem;}
+.work-date{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.1em;color:var(--ink-faint);
+}
+.work-toggle{
+  font-family:var(--mono);font-size:12px;font-weight:300;
+  color:var(--ink-faint);display:inline-block;
+  transition:transform 0.42s cubic-bezier(0.16,1,0.3,1),color 0.2s;
+}
+.work-entry.open .work-toggle{transform:rotate(45deg);color:var(--ink-mid);}
+.work-trail{display:none;padding-bottom:3rem;}
+.work-entry.open .work-trail{display:block;}
+.trail-point{
+  display:grid;grid-template-columns:130px 1fr;gap:2rem;
+  padding:1.8rem 0;border-top:0.5px solid var(--rule);
+  align-items:start;opacity:0;transform:translateY(8px);
+  transition:opacity 0.5s ease,transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.work-entry.open .trail-point{opacity:1;transform:translateY(0);}
+.work-entry.open .trail-point:nth-child(1){transition-delay:0.04s;}
+.work-entry.open .trail-point:nth-child(2){transition-delay:0.09s;}
+.work-entry.open .trail-point:nth-child(3){transition-delay:0.14s;}
+.work-entry.open .trail-point:nth-child(4){transition-delay:0.19s;}
+.work-entry.open .trail-point:nth-child(5){transition-delay:0.24s;}
+.work-entry.open .trail-point:nth-child(6){transition-delay:0.29s;}
+.trail-label{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.12em;color:var(--ink-faint);padding-top:3px;line-height:1.5;
+}
+.trail-content{font-family:var(--serif);font-size:16px;line-height:1.72;color:var(--ink-mid);}
+.trail-point.is-question .trail-content{font-size:20px;font-style:italic;color:var(--ink);letter-spacing:-0.005em;}
+.trail-point.is-underneath .trail-content{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.04em;color:var(--ink-mid);line-height:1.75;}
+.trail-point.is-pivot .trail-content{font-style:italic;color:var(--ink-muted);}
+.trail-point.is-thing{border-top:0.5px solid var(--rule-mid);margin-top:0.5rem;}
+.trail-point.is-thing .trail-content{color:var(--ink);}
+.trail-pullquote{
+  font-family:var(--serif);font-size:15px;font-style:italic;
+  color:var(--ink-muted);border-left:1px solid var(--rule-mid);
+  padding-left:1.2rem;margin-top:0.5rem;line-height:1.65;
+}
+.trail-source{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.08em;color:var(--ink-faint);margin-top:0.4rem;display:block;
+}
+.trail-link{
+  font-family:var(--mono);font-size:10px;font-weight:300;
+  letter-spacing:0.08em;color:var(--ink-muted);text-decoration:none;
+  border-bottom:0.5px solid var(--rule-mid);padding-bottom:1px;
+  display:inline-block;margin-top:0.7rem;margin-right:1.2rem;
+  transition:color 0.2s,border-color 0.2s;
+}
+.trail-link:hover{color:var(--ink);border-color:var(--ink-mid);}
+.trail-status{
+  display:inline-block;font-family:var(--mono);font-size:9px;
+  font-weight:300;letter-spacing:0.1em;color:var(--ink-faint);
+  border:0.5px solid var(--rule-mid);padding:3px 8px;margin-top:0.9rem;
+}
+.work-entry.placeholder .work-title{color:var(--ink-faint);}
+.work-entry.placeholder .work-question{color:var(--ink-faint);opacity:0.5;}
+.work-entry.placeholder .work-header{cursor:default;pointer-events:none;}
+.section-breath{
+  padding:8rem 4rem;display:flex;align-items:center;justify-content:center;
+}
+.breath-text{
+  font-family:var(--serif);font-size:clamp(19px,2.6vw,30px);
+  font-style:italic;font-weight:400;color:var(--ink-muted);
+  text-align:center;line-height:1.6;max-width:580px;letter-spacing:-0.005em;
+}
+
+/* THINKING */
+.section-thinking{
+  padding:6rem 4rem;
+  display:grid;grid-template-columns:220px 1fr;
+  gap:5rem;align-items:start;
+}
+.thinking-sidebar{position:sticky;top:6rem;}
+.thinking-list{list-style:none;}
+.thinking-item{
+  border-top:0.5px solid var(--rule);
+  cursor:pointer;
+}
+.thinking-item:last-child{border-bottom:0.5px solid var(--rule);}
+.thinking-header{
+  padding:2rem 0;
+  display:flex;justify-content:space-between;align-items:start;
+  gap:2rem;
+  transition:padding-left 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.thinking-item:hover .thinking-header{padding-left:0.8rem;}
+.thinking-header-left{flex:1;}
+.thinking-status{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.1em;color:var(--ink-faint);
+  display:block;margin-bottom:0.5rem;
+}
+.thinking-title{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  line-height:1.35;color:var(--ink);
+}
+.thinking-toggle{
+  font-family:var(--mono);font-size:12px;font-weight:300;
+  color:var(--ink-faint);flex-shrink:0;padding-top:2px;
+  display:inline-block;
+  transition:transform 0.42s cubic-bezier(0.16,1,0.3,1),color 0.2s;
+}
+.thinking-item.open .thinking-toggle{transform:rotate(45deg);color:var(--ink-mid);}
+.thinking-body{
+  display:none;padding-bottom:2.4rem;
+}
+.thinking-item.open .thinking-body{display:block;}
+.thinking-body p{
+  font-family:var(--serif);font-size:16px;font-style:italic;
+  color:var(--ink-muted);line-height:1.75;margin-bottom:1rem;
+}
+.thinking-body p:last-child{margin-bottom:0;}
+.thinking-link{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.08em;color:var(--ink-faint);text-decoration:none;
+  border-bottom:0.5px solid var(--rule-mid);
+  display:inline-block;margin-top:0.6rem;
+  transition:color 0.2s;
+}
+.thinking-link:hover{color:var(--ink-muted);}
+
+.section-reel{padding:6rem 4rem;background:var(--dark-bg);}
+.section-reel .section-label{color:rgba(232,228,219,0.2);}
+.reel-container{
+  aspect-ratio:16/9;background:var(--dark-surface);
+  display:flex;align-items:center;justify-content:center;
+}
+.reel-inner{text-align:center;}
+.reel-title{
+  font-family:var(--serif);font-size:clamp(26px,4vw,54px);
+  font-weight:400;font-style:italic;
+  color:rgba(232,228,219,0.12);letter-spacing:-0.01em;line-height:1.2;
+}
+.reel-sub{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.14em;color:rgba(232,228,219,0.18);margin-top:1.2rem;
+}
+.section-dark-breath{
+  padding:5.5rem 4rem;background:var(--dark-bg);
+  display:flex;align-items:center;justify-content:center;
+  border-top:0.5px solid rgba(232,228,219,0.05);
+}
+.dark-breath-text{
+  font-family:var(--serif);font-size:clamp(14px,1.7vw,19px);
+  font-style:italic;color:rgba(232,228,219,0.2);
+  text-align:center;line-height:1.75;max-width:460px;letter-spacing:0.01em;
+}
+.section-about{
+  padding:7rem 4rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8rem;align-items:start;
+}
+.about-text{
+  font-family:var(--serif);font-size:clamp(17px,1.8vw,20px);
+  line-height:1.82;color:var(--ink);letter-spacing:0.005em;
+}
+.about-text p{margin-bottom:1.6rem;}
+.about-text p:last-child{margin-bottom:0;}
+.about-currently{padding-top:0.5rem;}
+.currently-label{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.14em;color:var(--ink-faint);margin-bottom:2rem;display:block;
+}
+.currently-item{
+  padding:1.2rem 0;border-top:0.5px solid var(--rule);
+  display:grid;grid-template-columns:90px 1fr;
+  gap:1.5rem;align-items:baseline;
+}
+.currently-item:last-child{border-bottom:0.5px solid var(--rule);}
+.currently-type{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.08em;color:var(--ink-faint);
+}
+.currently-desc{
+  font-family:var(--serif);font-size:14px;
+  color:var(--ink-muted);line-height:1.5;font-style:italic;
+}
+.section-contact{
+  padding:8rem 4rem 7rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8rem;align-items:end;border-top:0.5px solid var(--rule);
+}
+.contact-heading{
+  font-family:var(--serif);font-size:clamp(38px,6vw,74px);
+  font-weight:400;line-height:1.05;letter-spacing:-0.02em;color:var(--ink);
+}
+.contact-right{padding-bottom:0.5rem;}
+.contact-note{
+  font-family:var(--serif);font-size:16px;font-style:italic;
+  color:var(--ink-muted);line-height:1.68;margin-bottom:2.5rem;max-width:380px;
+}
+.contact-links{list-style:none;}
+.contact-link-item{border-top:0.5px solid var(--rule);}
+.contact-link-item:last-child{border-bottom:0.5px solid var(--rule);}
+.contact-link-item a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 0;font-family:var(--mono);font-size:11px;font-weight:300;
+  letter-spacing:0.08em;color:var(--ink-mid);text-decoration:none;
+  transition:all 0.25s ease;
+}
+.contact-link-item a:hover{color:var(--ink);padding-left:0.5rem;}
+.link-arrow{font-size:14px;opacity:0;transform:translateX(-6px);transition:all 0.25s ease;}
+.contact-link-item a:hover .link-arrow{opacity:1;transform:translateX(0);}
+footer{
+  padding:1.8rem 4rem;display:flex;justify-content:space-between;
+  align-items:center;border-top:0.5px solid var(--rule);
+}
+.footer-note{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.1em;color:var(--ink-faint);
+}
+.reveal{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 0.85s ease,transform 0.85s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:1.4rem 2rem;}
+  .nav-links{gap:2rem;}
+  .hero,.section-studio,.section-breath,.section-dark-breath,.section-reel{padding-left:2rem;padding-right:2rem;}
+  .section-thinking{grid-template-columns:1fr;gap:0;padding:4rem 2rem;}
+  .thinking-sidebar{position:static;margin-bottom:2rem;}
+  .section-about{grid-template-columns:1fr;gap:3rem;padding:5rem 2rem;}
+  .section-contact{grid-template-columns:1fr;gap:3rem;padding:5rem 2rem;}
+  .trail-point{grid-template-columns:1fr;gap:0.4rem;}
+  .trail-label{padding-top:0;margin-bottom:0.3rem;}
+  footer{padding:1.5rem 2rem;}
+}
+@media(max-width:600px){
+  .nav-links{gap:1.5rem;}
+  .hero{padding:0 1.5rem 3rem;}
+  .hero-scroll{right:1.5rem;}
+}
+
+.reel-divider{
+  height:0.5px;background:rgba(232,228,219,0.06);
+  margin:3rem 0;
+}
+.reel-second-label{
+  margin-bottom:1.5rem;
+}
+.reel-second-tag{
+  font-family:var(--mono);font-size:9px;font-weight:300;
+  letter-spacing:0.14em;color:rgba(232,228,219,0.2);
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-wordmark">Ivan Lewis</a>
+  <ul class="nav-links">
+    <li><a href="#studio">studio</a></li>
+    <li><a href="#thinking">thinking</a></li>
+    <li><a href="#reel">reel</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#connect">connect</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <canvas class="hero-canvas" id="grassCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-name">Ivan<br>Lewis</h1>
+    <p class="hero-role">Writer &nbsp;·&nbsp; Director</p>
+  </div>
+  <span class="hero-scroll">scroll</span>
+</section>
+
+<div class="rule"></div>
+
+<section class="section-studio" id="studio">
+  <span class="section-label reveal">studio</span>
+
+  <div class="work-entry reveal" id="e1">
+    <div class="work-header" onclick="toggleWork('e1')">
+      <h2 class="work-title">The Last Message</h2>
+      <p class="work-question">What happens to the words people were saving for later, and never sent?</p>
+      <div class="work-footer-row">
+        <span class="work-format">screenplay</span>
+        <div class="work-date-toggle">
+          <span class="work-date">feb 2026</span>
+          <span class="work-toggle">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-trail">
+      <div class="trail-point">
+        <span class="trail-label">the seed</span>
+        <div class="trail-content">A conversation about grief. Someone mentioned they still texted their dead father's number sometimes. Not expecting a reply. Just because the habit had not stopped.</div>
+      </div>
+      <div class="trail-point is-question">
+        <span class="trail-label">the question</span>
+        <div class="trail-content">What if the reply came?</div>
+      </div>
+      <div class="trail-point">
+        <span class="trail-label">the material</span>
+        <div class="trail-content">
+          <p class="trail-pullquote">This technology does not create the emotions people could not express. It just removes the excuse for not finding the words.</p>
+          <span class="trail-source">observation, 2025</span>
+          <br><br>
+          News stories about grief tech startups. The quiet industry forming around loss and digital presence. None of it felt like the real thing yet.
+        </div>
+      </div>
+      <div class="trail-point is-underneath">
+        <span class="trail-label">underneath</span>
+        <div class="trail-content">A story about the damage done by things left unsaid, and what it means when a service offers to say them for you.</div>
+      </div>
+      <div class="trail-point is-pivot">
+        <span class="trail-label">the pivot</span>
+        <div class="trail-content">The first draft made the service the villain. That was too easy. The real question was not whether it was ethical. It was whether the son deserved to know which messages were real. The script got harder once the villain disappeared.</div>
+      </div>
+      <div class="trail-point is-thing">
+        <span class="trail-label">the thing</span>
+        <div class="trail-content">
+          Registered screenplay. 18 pages. SWA India, Feb 2026.
+          <br>
+          <a href="#" class="trail-link">read the script</a>
+          <a href="https://www.hereafter.ai" target="_blank" rel="noopener" class="trail-link">the service now exists</a>
+          <br>
+          <span class="trail-status">seeking production</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-entry reveal" id="e2">
+    <div class="work-header" onclick="toggleWork('e2')">
+      <h2 class="work-title">Maati Kona Chi?</h2>
+      <p class="work-question">Who decides what gets to grow, and what gets cut?</p>
+      <div class="work-footer-row">
+        <span class="work-format">short film · marathi</span>
+        <div class="work-date-toggle">
+          <span class="work-date">nov 2025</span>
+          <span class="work-toggle">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-trail">
+      <div class="trail-point">
+        <span class="trail-label">the seed</span>
+        <div class="trail-content">Watching a child lie flat on a garden, face inches from the earth, completely absorbed in an earthworm. The adult world moving around her, indifferent.</div>
+      </div>
+      <div class="trail-point is-question">
+        <span class="trail-label">the question</span>
+        <div class="trail-content">Whose soil is it? And does the grass have a say?</div>
+      </div>
+      <div class="trail-point">
+        <span class="trail-label">the material</span>
+        <div class="trail-content">
+          <p class="trail-pullquote">Bichara gavat… vaadhlay ki khush hot asel.<br><span style="font-size:13px;opacity:0.7;">Poor grass… it must feel happy when it grows.</span></p>
+          <span class="trail-source">Chinni, six years old, in the script</span>
+          <br><br>
+          The idea that wildness is not disorder. That something growing beyond its assigned boundary might simply be alive.
+        </div>
+      </div>
+      <div class="trail-point is-underneath">
+        <span class="trail-label">underneath</span>
+        <div class="trail-content">Belonging. Who inherits a place. What gets preserved and what gets managed out of existence.</div>
+      </div>
+      <div class="trail-point is-pivot">
+        <span class="trail-label">the pivot</span>
+        <div class="trail-content">The script kept wanting to be written in English. Resisted it each time. The question only existed properly in Marathi. Some things cannot be translated without losing the argument.</div>
+      </div>
+      <div class="trail-point is-thing">
+        <span class="trail-label">the thing</span>
+        <div class="trail-content">
+          Registered screenplay. 9 pages. SWA India, Nov 2025. Ivan Lewis writing and directing.
+          <br>
+          <span class="trail-status">pre-production 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-entry reveal" id="e3">
+    <div class="work-header" onclick="toggleWork('e3')">
+      <h2 class="work-title">Current Engagements</h2>
+      <p class="work-question">What does a brand sound like before it knows what it is?</p>
+      <div class="work-footer-row">
+        <span class="work-format">consulting</span>
+        <div class="work-date-toggle">
+          <span class="work-date">ongoing</span>
+          <span class="work-toggle">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-trail">
+      <div class="trail-point">
+        <span class="trail-label">the seed</span>
+        <div class="trail-content">Three briefs arriving at the same time. A communications boutique in Dubai finding its footing. A spice blend learning what it stands for. A food startup deciding what kind of company it wants to become.</div>
+      </div>
+      <div class="trail-point is-question">
+        <span class="trail-label">the question</span>
+        <div class="trail-content">What does a brand sound like before it knows what it is?</div>
+      </div>
+      <div class="trail-point is-underneath">
+        <span class="trail-label">underneath</span>
+        <div class="trail-content">Every brand problem is a story problem. The identity work and the narrative work are the same work.</div>
+      </div>
+      <div class="trail-point is-thing">
+        <span class="trail-label">the thing</span>
+        <div class="trail-content">
+          Brand identity. Narrative direction. Creative strategy. Three clients, three cities.
+          <br>
+          <span class="trail-status">active 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-entry placeholder reveal">
+    <div class="work-header">
+      <h2 class="work-title">Something is forming.</h2>
+      <p class="work-question">Not ready to be named yet.</p>
+      <div class="work-footer-row">
+        <span class="work-format">—</span>
+        <span class="work-date">—</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="rule"></div>
+
+<section class="section-thinking" id="thinking">
+  <div class="thinking-sidebar reveal">
+    <span class="section-label" style="margin-bottom:0">thinking</span>
+  </div>
+  <ul class="thinking-list">
+
+    <li class="thinking-item reveal" id="t1">
+      <div class="thinking-header" onclick="toggleThink('t1')">
+        <div class="thinking-header-left">
+          <span class="thinking-status">on observation</span>
+          <h3 class="thinking-title">The goal isn't to see more places.</h3>
+        </div>
+        <span class="thinking-toggle">+</span>
+      </div>
+      <div class="thinking-body">
+        <p>The goal isn't to see more places. It's to see the same things more completely.</p>
+        <p>I used to look outward constantly. The next city, the next horizon, the next experience someone else had already mapped. Now I'm more selective. The same street, the same light, the same ordinary moment, but this time seen through my own eyes. Not borrowed meaning. Mine.</p>
+        <p>Everything that matters was already there. I just wasn't looking.</p>
+      </div>
+    </li>
+
+    <li class="thinking-item reveal" id="t2">
+      <div class="thinking-header" onclick="toggleThink('t2')">
+        <div class="thinking-header-left">
+          <span class="thinking-status">on making</span>
+          <h3 class="thinking-title">Creation isn't invention. It's filtration.</h3>
+        </div>
+        <span class="thinking-toggle">+</span>
+      </div>
+      <div class="thinking-body">
+        <p>Creation isn't invention. It's filtration.</p>
+        <p>You absorb until you're saturated. Then it comes out, but it's no longer the thing you took in. It's passed through you. It carries your shape now.</p>
+        <p>Not everything that emerges will be remarkable. That's not the point. The point is that it's yours. And the work that endures is the work that in its most stripped-down form is also the most obvious. The soul of it right there. Nothing hiding behind craft.</p>
+        <p>Human-centred. Human-made. That's what survives everything else.</p>
+      </div>
+    </li>
+
+    <li class="thinking-item reveal" id="t3">
+      <div class="thinking-header" onclick="toggleThink('t3')">
+        <div class="thinking-header-left">
+          <span class="thinking-status">on culture and timing</span>
+          <h3 class="thinking-title">We may be the last generation that trusted institutions completely.</h3>
+        </div>
+        <span class="thinking-toggle">+</span>
+      </div>
+      <div class="thinking-body">
+        <p>We may be the last generation that trusted institutions completely, and the first to watch them fail in real time.</p>
+        <p>Everyone's calling it a cultural shift. I think it's something older. A reckoning. We built machines to extend our thinking and somewhere along the way confused the extension for the thought itself. The internet gave us more information than any civilisation in history, and we used it mostly to confirm what we already believed.</p>
+        <p>But something is changing. Not because the machines failed us. Because we're beginning to remember that we always knew which way was true north. We just forgot to look.</p>
+      </div>
+    </li>
+
+    <li class="thinking-item reveal" id="t4">
+      <div class="thinking-header" onclick="toggleThink('t4')">
+        <div class="thinking-header-left">
+          <span class="thinking-status">on collaboration</span>
+          <h3 class="thinking-title">The rooms where ideas die all have one thing in common.</h3>
+        </div>
+        <span class="thinking-toggle">+</span>
+      </div>
+      <div class="thinking-body">
+        <p>The rooms where ideas die all have one thing in common. Play isn't permitted there.</p>
+        <p>Not play as distraction. Play as method. The willingness to ask why not, what if, let's try, without needing permission or guarantee. The best people I've worked with treat every brief as a question worth being genuinely curious about. They borrow from everywhere. They break patterns without apology. They stay children long enough to find the thing the adults have been walking past.</p>
+        <p>Ideas aren't scarce. The rooms that welcome them are.</p>
+      </div>
+    </li>
+
+    <li class="thinking-item reveal" id="t5">
+      <div class="thinking-header" onclick="toggleThink('t5')">
+        <div class="thinking-header-left">
+          <span class="thinking-status">on story</span>
+          <h3 class="thinking-title">We don't watch stories to understand other people.</h3>
+        </div>
+        <span class="thinking-toggle">+</span>
+      </div>
+      <div class="thinking-body">
+        <p>We don't watch stories to understand other people. We watch to see ourselves wearing a better mask.</p>
+        <p>The audience needs characters to suffer so their own nervous system can feel something real for two hours. Our empathy isn't selfless, it's transactional. We care about a character precisely as long as we can project our own fears and desires onto them. The moment they make a choice that doesn't serve our self-image, we discard them.</p>
+        <p>What the storyteller is really selling is a structured lie. The real world is indifferent and chaotic. People die for no reason. Good intentions fail. The audience can't hold that. So they pay to inhabit a reality where suffering has purpose and everything happens for a reason, even in tragedy.</p>
+        <p>The best stories know this. They give the audience the lie they need, and somewhere inside it, the truth they weren't ready to ask for.</p>
+
+      </div>
+    </li>
+
+  </ul>
+</section>
+
+<section class="section-reel" id="reel">
+  <span class="section-label reveal">reel</span>
+
+  <div class="reel-container reveal">
+    <div class="reel-inner">
+      <p class="reel-title">Twenty years.<br>One edit.</p>
+      <p class="reel-sub">assembling · 2026</p>
+    </div>
+  </div>
+
+  <div class="reel-divider reveal"></div>
+
+  <div class="reel-second-label reveal">
+    <span class="reel-second-tag">generated &middot; directed &middot; scripted</span>
+  </div>
+
+  <div class="reel-container reveal">
+    <div class="reel-inner">
+      <p class="reel-title" style="font-size:clamp(20px,3vw,38px);">A different<br>kind of eye.</p>
+      <p class="reel-sub">generative work &middot; assembling &middot; 2026</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="section-dark-breath"></div>
+
+<section class="section-about" id="about">
+  <div class="about-text reveal">
+    <p>The question has always been the same. Not what to make, but why this, why now, why will anyone care a year from now. Everything else gets figured out when the why gets answered honestly.</p>
+    <p>Wrote a story about a service that speaks for people after they're gone. A year later, someone built it. Still writing. Still watching. Still arriving before things have names.</p>
+  </div>
+  <div class="about-currently reveal">
+    <span class="currently-label">currently</span>
+    <div class="currently-item">
+      <span class="currently-type">writing</span>
+      <span class="currently-desc">Scripts in progress. IPs in development.</span>
+    </div>
+    <div class="currently-item">
+      <span class="currently-type">directing</span>
+      <span class="currently-desc">Maati Kona Chi, pre-production.</span>
+    </div>
+    <div class="currently-item">
+      <span class="currently-type">consulting</span>
+      <span class="currently-desc">Brand narrative, Dubai. Identity work, Mumbai.</span>
+    </div>
+    <div class="currently-item">
+      <span class="currently-type">thinking</span>
+      <span class="currently-desc">What storytelling looks like when the tools keep changing but the question does not.</span>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section class="section-contact" id="connect">
+  <div class="reveal">
+    <h2 class="contact-heading">If something here<br>stayed with you,<br>say hello.</h2>
+  </div>
+  <div class="contact-right reveal">
+    <p class="contact-note">The best projects start with one honest question. If you have one, send it.</p>
+    <ul class="contact-links">
+      <li class="contact-link-item">
+        <a href="mailto:lastgoodtaste@gmail.com">
+          lastgoodtaste@gmail.com
+          <span class="link-arrow">→</span>
+        </a>
+      </li>
+      <li class="contact-link-item">
+        <a href="https://linkedin.com/in/ivan-lewis/" target="_blank" rel="noopener">
+          linkedin
+          <span class="link-arrow">→</span>
+        </a>
+      </li>
+      <li class="contact-link-item">
+        <a href="https://letterboxd.com" target="_blank" rel="noopener">
+          letterboxd
+          <span class="link-arrow">→</span>
+        </a>
+      </li>
+      <li class="contact-link-item">
+        <a href="https://instagram.com" target="_blank" rel="noopener">
+          instagram
+          <span class="link-arrow">→</span>
+        </a>
+      </li>
+      <li class="contact-link-item">
+        <a href="#" target="_blank">
+          substack &middot; coming
+          <span class="link-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-note">Ivan Lewis</span>
+  <span class="footer-note">Mumbai · ivanlewis.net</span>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.work-header,.thinking-header').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+});
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(() => e.target.classList.add('visible'), i * 55);
+      obs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.08, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function toggleWork(id) {
+  const entry = document.getElementById(id);
+  const isOpen = entry.classList.contains('open');
+  document.querySelectorAll('.work-entry').forEach(e => e.classList.remove('open'));
+  if(!isOpen) entry.classList.add('open');
+}
+
+function toggleThink(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.thinking-item').forEach(e => e.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+const canvas = document.getElementById('grassCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, blades = [], t = 0;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  buildBlades();
+}
+
+function buildBlades() {
+  blades = [];
+  const n = Math.floor(W * 0.55);
+  for(let i = 0; i < n; i++) {
+    const wild = Math.random() > 0.42;
+    blades.push({
+      x: Math.random() * W,
+      h: wild ? 55 + Math.random() * 130 : 18 + Math.random() * 38,
+      w: 0.7 + Math.random() * 1.5,
+      phase: Math.random() * Math.PI * 2,
+      spd: 0.25 + Math.random() * 0.9,
+      sway: wild ? 9 + Math.random() * 20 : 2 + Math.random() * 5,
+      op: 0.28 + Math.random() * 0.52,
+      hue: wild ? 82 + Math.random() * 35 : 58 + Math.random() * 28,
+      sat: wild ? 22 + Math.random() * 32 : 12 + Math.random() * 22,
+    });
+  }
+  blades.sort((a,b) => a.h - b.h);
+}
+
+function drawBlade(b) {
+  const sw = Math.sin(t * b.spd + b.phase) * b.sway;
+  const segs = 6;
+  ctx.beginPath();
+  ctx.moveTo(b.x, H);
+  for(let s = 1; s <= segs; s++) {
+    const p = s/segs, c = p*p;
+    const px = b.x + sw*c, py = H - b.h*p;
+    if(s===1){ ctx.lineTo(px,py); }
+    else {
+      const pp=(s-1)/segs, pc=pp*pp;
+      ctx.quadraticCurveTo(b.x+sw*(pc+c)/2, H-b.h*(pp+p)/2, px, py);
+    }
+  }
+  const l = b.wild ? 26+Math.random()*10 : 36+Math.random()*12;
+  ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${l}%,${b.op})`;
+  ctx.lineWidth = b.w;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+}
+
+function frame() {
+  ctx.clearRect(0,0,W,H);
+  t += 0.007;
+  blades.forEach(drawBlade);
+  const g = ctx.createLinearGradient(0,H*0.55,0,H);
+  g.addColorStop(0,'rgba(244,242,237,0)');
+  g.addColorStop(1,'rgba(244,242,237,0.18)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0,H*0.55,W,H*0.45);
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener('resize', resize, {passive:true});
+resize();
+frame();
+</script>
+</body>
+</html>

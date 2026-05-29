@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Ivan Lewis — Writer, Director & Brand Strategist</title>
+  <meta name="description" content="Narrative strategy, screenwriting, and film direction. Twenty years shaping stories that stick.">
+  <meta name="keywords" content="Ivan Lewis, Writer, Director, Brand Strategy, Mumbai, Creative Director, Screenwriting, Film">
+  <meta name="author" content="Ivan Lewis">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ivan Lewis — Writer, Director & Brand Strategist">
+  <meta property="og:description" content="Narrative strategy, screenwriting, and film direction.">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #1a1a1a;
+      --text: #f4f2ed;
+      --text-secondary: #b8b5ad;
+      --border: #333;
+      --accent: #e8b4b8;
+      --serif: 'EB Garamond', Georgia, serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
+      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Film Grain */
+    .grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      z-index: 9999;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--text);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transition: width 0.2s, height 0.2s;
+      mix-blend-mode: screen;
+    }
+
+    .cursor.expanded {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wordmark {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      margin: 0;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 13px;
+      text-transform: lowercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta-btn {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--text);
+      transition: all 0.3s;
+    }
+
+    .nav-cta-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .nav-links {
+        gap: 16px;
+        font-size: 11px;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(26,26,26,0.4) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 720px;
+      padding: 48px;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 52px;
+      line-height: 1.2;
+      font-weight: 400;
+      margin: 24px 0 48px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--text);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    @media (max-width: 768px) {
+      .hero-name {
+      font-family: var(--serif);
+        font-size: 32px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Rule */
+    .rule {
+      height: 1px;
+      background: var(--border);
+      margin: 96px 0;
+    }
+
+    /* Section Container */
+    .section-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section-label.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Philosophy Section */
+    .section-philosophy {
+      padding: 96px 0;
+    }
+
+    .philosophy-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .philosophy-text {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.8;
+      font-style: italic;
+      color: var(--text);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Thinking Section */
+    .section-thinking {
+      padding: 96px 0;
+      background: rgba(232, 180, 184, 0.03);
+    }
+
+    .thinking-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .thinking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .thinking-fragment {
+      padding: 24px;
+      border-left: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .thinking-fragment.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thinking-title {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .thinking-text {
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .thinking-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* Studio Section */
+    .section-studio {
+      padding: 96px 0;
+    }
+
+    .studio-header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+      margin-bottom: 64px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-family: var(--sans);
+      font-size: 28px;
+      font-weight: 600;
+      margin: 16px 0;
+    }
+
+    .work-list {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .work-entry {
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .work-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .work-header {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .work-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .work-title {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .work-format {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+    }
+
+    .work-question {
+      font-family: var(--serif);
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 12px 0;
+      font-style: italic;
+    }
+
+    .work-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .work-date {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .work-toggle {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--text-secondary);
+      transition: transform 0.3s;
+    }
+
+    .work-entry.open .work-toggle {
+      font-family: var(--mono);
+      transform: rotate(45deg);
+    }
+
+    .work-trail {
+      display: none;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-entry.open .work-trail {
+      display: block;
+    }
+
+    .trail-point {
+      margin-bottom: 32px;
+    }
+
+    .trail-label {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .trail-content {
+      font-family: var(--serif);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .trail-pullquote {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--text);
+      margin: 12px 0;
+      padding-left: 16px;
+      border-left: 2px solid var(--border);
+    }
+
+    .trail-source {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 8px;
+    }
+
+    .trail-links-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .trail-link {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text);
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+
+    .trail-link:hover {
+      color: var(--accent);
+    }
+
+    .trail-status {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+    }
+
+    /* Services Section */
+    .section-services {
+      padding: 96px 0;
+      background: rgba(232, 180, 184, 0.03);
+    }
+
+    .services-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .services-intro {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    .service-card {
+      padding: 32px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card h3 {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 16px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .service-card p {
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* About Section */
+    .section-about {
+      padding: 96px 0;
+    }
+
+    .about-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-photo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-text h2 {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .about-links {
+      margin-top: 32px;
+      display: flex;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .about-links a {
+      font-family: var(--mono);
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .about-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Reel Section */
+    .section-reel {
+      padding: 96px 0;
+      background: rgba(232, 180, 184, 0.03);
+    }
+
+    .reel-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .reel-subsection {
+      margin-bottom: 96px;
+    }
+
+    .reel-subsection h3 {
+      font-size: 18px;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+    /* Reel Section */
+    .section-reel {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .reel-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .reel-video-mockup {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reel-video-mockup.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px;
+      z-index: 2;
+      background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 26, 0.6) 100%);
+    }
+
+    .reel-play-btn {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .reel-play-btn:hover {
+      background: rgba(244, 242, 237, 0.1);
+      transform: scale(1.1);
+    }
+
+    .reel-play-icon {
+      color: var(--text);
+      font-size: 20px;
+      margin-left: 4px;
+    }
+
+    .reel-gradient-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #2a4a4a 0%, #1a3a3a 100%);
+    }
+
+    .secondary-bg {
+      background: linear-gradient(135deg, #3a2a4a 0%, #2a1a3a 100%);
+    }
+
+    .reel-title {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .reel-sub {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+    }
+
+    .reel-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 64px 0;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reel-divider.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reel-second-section {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reel-second-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reel-tag {
+      font-family: var(--mono);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .reel-title {
+      font-family: var(--serif);
+        font-size: 22px;
+      }
+
+      .reel-overlay {
+        padding: 32px;
+      }
+
+      .reel-play-btn {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    /* Connect Section */
+    .section-connect {
+      padding: 96px 0;
+    }
+
+    .connect-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .connect-header {
+      margin-bottom: 64px;
+    }
+
+    .connect-header h2 {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .connect-intro {
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    .track-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .track-option {
+      padding: 24px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .track-option.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .track-option:hover {
+      border-color: var(--text);
+      background: rgba(232, 180, 184, 0.05);
+    }
+
+    .track-option input[type="radio"] {
+      margin-right: 12px;
+    }
+
+    .track-option-label {
+      font-family: var(--serif);
+      font-family: var(--serif);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .track-description {
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+    }
+
+    .dynamic-cta {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    #dynamic-cta-btn {
+      display: inline-block;
+      margin-bottom: 16px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #dynamic-cta-btn.active {
+      opacity: 1;
+    }
+
+    #dynamic-cta-microcopy {
+      font-family: var(--sans);
+      display: block;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #dynamic-cta-microcopy.active {
+      opacity: 1;
+    }
+
+    .contact-info {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .contact-info a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .track-options {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Footer */
+    footer {
+      font-family: var(--mono);
+      padding: 48px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .footer-note {
+      display: block;
+      margin: 8px 0;
+    }
+
+    /* Pause Section */
+    .pause-section {
+      height: 240px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pause-text {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-container,
+      .philosophy-container,
+      .thinking-container,
+      .studio-header,
+      .work-list,
+      .services-container,
+      .about-container,
+      .reel-container,
+      .connect-container {
+        padding: 0 24px;
+      }
+
+      .rule {
+        margin: 64px 0;
+      }
+
+      .section-philosophy,
+      .section-thinking,
+      .section-studio,
+      .section-services,
+      .section-about,
+      .section-reel,
+      .section-connect {
+        padding: 64px 0;
+      }
+
+      .hero-name {
+      font-family: var(--serif);
+        font-size: 32px;
+      }
+
+      .section-heading {
+      font-family: var(--serif);
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  
+  <!-- Film Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Navigation Bar -->
+  <nav id="nav">
+    <a href="#" class="nav-wordmark">Ivan Lewis</a>
+    <ul class="nav-links">
+      <li><a href="#philosophy">philosophy</a></li>
+      <li><a href="#studio">studio</a></li>
+      <li><a href="#thinking">thinking</a></li>
+      <li><a href="#services">services</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#connect">connect</a></li>
+    </ul>
+    <a href="#connect" class="nav-cta-btn">Get in Touch</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="grassCanvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-name">Tools change.<br>The human question does not.</h1>
+      <div class="hero-actions">
+        <a href="#connect" class="btn btn-primary">Initiate Project</a>
+        <a href="#connect" class="btn btn-secondary">Book a Call</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Philosophy Section -->
+  <section class="section-philosophy" id="philosophy">
+    <div class="philosophy-container">
+      <span class="section-label reveal">philosophy</span>
+      <blockquote class="philosophy-text reveal">
+        "Every brand problem is a story problem. The identity work and the narrative work are the same work.
+        <br><br>
+        Generative AI can create a thousand images in seconds. But it doesn't know why a child lies face-down in the grass, completely absorbed in an earthworm. It doesn't know why we keep texting numbers belonging to people who are gone.
+        <br><br>
+        We use intelligence to accelerate execution, but we rely on cinema to remember who we are."
+      </blockquote>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Thinking Section -->
+  <section class="section-thinking" id="thinking">
+    <div class="thinking-container">
+      <span class="section-label reveal">thinking</span>
+      <div class="thinking-grid">
+        <div class="thinking-fragment reveal">
+          <div class="thinking-title">Timing is sight</div>
+          <div class="thinking-text">
+            A story told too early feels premature. Told too late, it's a post-mortem. The mark of a good instinct is knowing which moment a culture is ready to hear something true. That's not prediction. That's listening.
+          </div>
+        </div>
+        <div class="thinking-fragment reveal">
+          <div class="thinking-title">Making is thinking</div>
+          <div class="thinking-text">
+            The script changes when you write it. The film changes when you direct it. Ideas live in abstraction until they hit material. Then they fight back. That resistance is where the real work starts.
+          </div>
+        </div>
+        <div class="thinking-fragment reveal">
+          <div class="thinking-title">Stories move people</div>
+          <div class="thinking-text">
+            A brand needs permission to speak. That permission comes from being honest about what problem it actually solves, what it believes, where it falls short. The narrative isn't decoration. It's the ground the brand stands on.
+          </div>
+        </div>
+        <div class="thinking-fragment reveal">
+          <div class="thinking-title">Tools are tools</div>
+          <div class="thinking-text">
+            Generative AI is fast. It's useful. But speed without intention is noise. The question isn't what the tool can do. It's what the story needs. The tool serves the story. Not the other way around.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Studio Section -->
+  <section class="section-studio" id="studio">
+    <div class="studio-header">
+      <span class="section-label reveal">studio</span>
+      <h2 class="section-heading reveal">Selected Works</h2>
+    </div>
+
+    <div class="work-list">
+      
+      <!-- Entry 1 -->
+      <div class="work-entry reveal" id="e1">
+        <div class="work-header" onclick="toggleWork('e1')">
+          <div class="work-title-row">
+            <h3 class="work-title">The Last Message</h3>
+            <span class="work-format">screenplay / IP</span>
+          </div>
+          <p class="work-question">What happens to the words people were saving for later, and never sent?</p>
+          <div class="work-footer-row">
+            <span class="work-date">feb 2026</span>
+            <span class="work-toggle">+</span>
+          </div>
+        </div>
+        
+        <div class="work-trail">
+          <div class="trail-point">
+            <span class="trail-label">the seed</span>
+            <div class="trail-content">A conversation about grief. Someone mentioned they still texted their dead father's number sometimes. Not expecting a reply. Just because the habit had not stopped.</div>
+          </div>
+          <div class="trail-point is-question">
+            <span class="trail-label">the question</span>
+            <div class="trail-content">What if the reply came?</div>
+          </div>
+          <div class="trail-point">
+            <span class="trail-label">the material</span>
+            <div class="trail-content">
+              <p class="trail-pullquote">"This technology does not create the emotions people could not express. It just removes the excuse for not finding the words."</p>
+              <span class="trail-source">observation notes, 2025</span>
+              <br>
+              News stories about grief tech startups. The quiet industry forming around loss and digital presence.
+            </div>
+          </div>
+          <div class="trail-point is-underneath">
+            <span class="trail-label">underneath</span>
+            <div class="trail-content">A story about the damage done by things left unsaid, and what it means when a service offers to say them for you.</div>
+          </div>
+          <div class="trail-point is-pivot">
+            <span class="trail-label">the pivot</span>
+            <div class="trail-content">The first draft made the service the villain. That was too easy. The real question was not whether it was ethical. It was whether the son deserved to know which messages were real.</div>
+          </div>
+          <div class="trail-point is-thing">
+            <span class="trail-label">the thing</span>
+            <div class="trail-content">
+              Registered screenplay. 18 pages. SWA India, Feb 2026.
+              <br>
+              <div class="trail-links-row">
+                <a href="#" class="trail-link" id="link-script-e1">read the script</a>
+                <a href="https://www.hereafter.ai" target="_blank" rel="noopener" class="trail-link" id="link-startup-e1">the service exists</a>
+              </div>
+              <span class="trail-status">seeking production</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="work-entry reveal" id="e2">
+        <div class="work-header" onclick="toggleWork('e2')">
+          <div class="work-title-row">
+            <h3 class="work-title">Maati Kona Chi?</h3>
+            <span class="work-format">short film · marathi</span>
+          </div>
+          <p class="work-question">Who decides what gets to grow, and what gets cut?</p>
+          <div class="work-footer-row">
+            <span class="work-date">nov 2025</span>
+            <span class="work-toggle">+</span>
+          </div>
+        </div>
+        
+        <div class="work-trail">
+          <div class="trail-point">
+            <span class="trail-label">the seed</span>
+            <div class="trail-content">Watching a child lie flat on a garden, face inches from the earth, completely absorbed in an earthworm. The adult world moving around her, indifferent.</div>
+          </div>
+          <div class="trail-point is-question">
+            <span class="trail-label">the question</span>
+            <div class="trail-content">Whose soil is it? And does the grass have a say?</div>
+          </div>
+          <div class="trail-point">
+            <span class="trail-label">the material</span>
+            <div class="trail-content">
+              <p class="trail-pullquote">"Bichara gavat… vaadhlay ki khush hot asel."<br><span style="font-size: 13px; opacity: 0.7;">(Poor grass… it must feel happy when it grows.)</span></p>
+              <span class="trail-source">Chinni, six years old, script excerpt</span>
+              <br>
+              The idea that wildness is not disorder. That something growing beyond its boundary might simply be alive.
+            </div>
+          </div>
+          <div class="trail-point is-underneath">
+            <span class="trail-label">underneath</span>
+            <div class="trail-content">Belonging. Who inherits a place. What gets preserved and what gets managed out of existence.</div>
+          </div>
+          <div class="trail-point is-pivot">
+            <span class="trail-label">the pivot</span>
+            <div class="trail-content">The script kept wanting to be written in English. Resisted it each time. The question only existed properly in Marathi. Some things cannot be translated without losing the argument.</div>
+          </div>
+          <div class="trail-point is-thing">
+            <span class="trail-label">the thing</span>
+            <div class="trail-content">
+              Shooting spring 2026. 16mm. Marathi dialogue.
+              <br>
+              <div class="trail-links-row">
+                <a href="#" class="trail-link" id="link-treatment-e2">read the treatment</a>
+              </div>
+              <span class="trail-status">pre-production</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Services Section -->
+  <section class="section-services" id="services">
+    <div class="services-container">
+      <span class="section-label reveal">services</span>
+      
+      <div class="services-intro reveal">
+        I work with brands and founders on narrative strategy, creative direction, scriptwriting, and film. Scope and budget determine approach. Every project is custom.
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Strategy Consultation</h3>
+        <p>Narrative diagnosis. Brand story architecture. Cultural positioning. Paid 60–90 minute calls for founders and brand leaders exploring strategic direction.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Campaign Concept</h3>
+        <p>Narrative strategy + creative direction for campaigns, product launches, brand repositioning. Concept development, creative brief, visual direction.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Screenwriting & Development</h3>
+        <p>Scripts for film, TV, branded content. Story development from seed to shooting draft. Character work, world-building, dialogue.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Film Direction</h3>
+        <p>Directing commercials, branded films, documentaries, shorts. Full production from creative concept through post. Emphasis on cinematic storytelling and human truth.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Creative Advisory</h3>
+        <p>Retainer-based consulting for founders, platforms, and brands. Ongoing narrative strategy, creative direction, IP development, content ecosystem design.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Reel Section -->
+  <section class="section-reel" id="reel">
+    <div class="reel-container">
+      <span class="section-label reveal">reel</span>
+      
+      <!-- First Reel Entry -->
+      <div class="reel-video-mockup reveal">
+        <div class="reel-overlay">
+          <div class="reel-play-btn">
+            <span class="reel-play-icon">▶</span>
+          </div>
+          <p class="reel-title">Twenty years.<br>One edit.</p>
+          <p class="reel-sub">assembling · 2026</p>
+        </div>
+        <div class="reel-gradient-bg"></div>
+      </div>
+
+      <div class="reel-divider reveal"></div>
+
+      <!-- Second Reel Entry -->
+      <div class="reel-second-section reveal">
+        <span class="reel-tag">generated · directed · scripted</span>
+        
+        <div class="reel-video-mockup secondary-reel reveal" style="margin-top: 32px;">
+          <div class="reel-overlay">
+            <div class="reel-play-btn">
+              <span class="reel-play-icon">▶</span>
+            </div>
+            <p class="reel-title">A different kind of eye.</p>
+            <p class="reel-sub">generative · assembling · 2026</p>
+          </div>
+          <div class="reel-gradient-bg secondary-bg"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Pause Section -->
+  <div class="pause-section reveal">
+    <span class="pause-text">time to think</span>
+  </div>
+
+  <!-- About Section -->
+  <section class="section-about" id="about">
+    <div class="about-container">
+      <!-- INSTRUCTION: Replace 'portrait.jpg' with your uploaded photo. Save it in the same folder as index.html -->
+      <img src="portrait.jpg" alt="Ivan Lewis" class="about-photo reveal" loading="lazy">
+      <div>
+        <h2 class="reveal">Twenty years shaping stories that stick.</h2>
+        <p class="reveal">
+          I write campaigns, scripts and screenplays. I also direct long-form television content, as well as advise brands on branding and narrative strategy. My work crosses television, advertising, and IP development. The common thread being stories grounded in observation, executed with craft, shaped by timing.
+        </p>
+        <p class="reveal">
+          I'm based in Mumbai, and I prefer working with a limited roster of brands and projects so I can give full attention to each one.
+        </p>
+        <div class="about-links reveal">
+          <a href="https://www.linkedin.com/in/ivan-lewis/" target="_blank">LinkedIn</a>
+          <a href="https://www.instagram.com/itzivanl/" target="_blank">Instagram</a>
+          <a href="https://substack.com/@lastgoodtaste" target="_blank">Substack</a>
+          <a href="mailto:lastgoodtaste@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Connect Section -->
+  <section class="section-connect" id="connect">
+    <div class="connect-container">
+      <div class="connect-header">
+        <span class="section-label reveal">connect</span>
+        <h2 class="reveal">Start a Conversation</h2>
+        <p class="connect-intro reveal">
+          I respond to serious enquiries about narrative strategy, creative direction, scriptwriting, and film. You can either book a call for under ₹10L budgets, or fill an enquiry form for more extensive project work.
+        </p>
+      </div>
+
+      <div class="track-options">
+        <label class="track-option reveal">
+          <input type="radio" name="project-track" value="call" checked>
+          <div class="track-option-label">
+            <span>
+              <strong>Strategy Call</strong>
+              <div class="track-description">Quick brief for founders and brand leaders. ₹5,000. 30 minutes.</div>
+            </span>
+          </div>
+        </label>
+        <label class="track-option reveal">
+          <input type="radio" name="project-track" value="enquiry">
+          <div class="track-option-label">
+            <span>
+              <strong>Project Enquiry</strong>
+              <div class="track-description">For campaigns, strategy, creative direction, or film work. 3-minute form.</div>
+            </span>
+          </div>
+        </label>
+      </div>
+
+      <div class="dynamic-cta">
+        <a href="https://calendly.com/ivanlewis/30min" id="dynamic-cta-btn" class="btn btn-primary active">Book 30-Minute Strategy Call</a>
+        <span id="dynamic-cta-microcopy" class="active">Quick brief for founders and brand leaders.</span>
+      </div>
+
+      <div class="contact-info">
+        <p style="font-size: 12px; opacity: 0.7;">🔒 All details submitted are protected under automatic mutual NDA.</p>
+      </div>
+
+      <div class="contact-info" style="border-top: none; padding-top: 0; margin-top: 24px;">
+        <p><strong>Email:</strong> <a href="mailto:lastgoodtaste@gmail.com">lastgoodtaste@gmail.com</a></p>
+        <p><strong>Location:</strong> Mumbai, India</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-note">Ivan Lewis</span>
+    <span class="footer-note">Mumbai · ivanlewis.net</span>
+    <span class="footer-note" style="margin-top: 16px; font-size: 11px; opacity: 0.5;">© 2026</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // 1. Custom Cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = (e.clientX - 6) + 'px';
+      cursor.style.top = (e.clientY - 6) + 'px';
+    });
+    
+    document.querySelectorAll('a, button, .work-header, input[type="radio"]').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    });
+
+    // 2. Navbar Scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, {passive: true});
+
+    // 3. Scroll Reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((entry, idx) => {
+        if(entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 60);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
+    
+    revealElements.forEach(el => obs.observe(el));
+
+    // 4. Work Accordion Toggle
+    function toggleWork(id) {
+      const entry = document.getElementById(id);
+      const isOpen = entry.classList.contains('open');
+      document.querySelectorAll('.work-entry').forEach(e => e.classList.remove('open'));
+      if(!isOpen) entry.classList.add('open');
+    }
+
+    // 5. Dynamic CTA Button
+    const trackRadios = document.querySelectorAll('input[name="project-track"]');
+    const dynamicBtn = document.getElementById('dynamic-cta-btn');
+    const dynamicMicrocopy = document.getElementById('dynamic-cta-microcopy');
+
+    const ctaConfigs = {
+      call: {
+        text: "Book 30-Minute Strategy Call",
+        url: "https://calendly.com/ivanlewis/30min",
+        microcopy: "Quick brief for founders and brand leaders."
+      },
+      enquiry: {
+        text: "Fill Project Enquiry Form",
+        url: "https://docs.google.com/forms/d/1a9raKLvtxup6TMqBxU0cJJDh-tk7LHVs3XjM0q6cUTI/viewform",
+        microcopy: "Project Enquiry\nFor campaigns, strategy, creative direction, or film work."
+      }
+    };
+
+    trackRadios.forEach(radio => {
+      radio.addEventListener('change', e => {
+        const val = e.target.value;
+        const config = ctaConfigs[val];
+        
+        dynamicBtn.style.opacity = 0;
+        dynamicMicrocopy.style.opacity = 0;
+        
+        setTimeout(() => {
+          dynamicBtn.textContent = config.text;
+          dynamicBtn.setAttribute('href', config.url);
+          dynamicMicrocopy.textContent = config.microcopy;
+          
+          dynamicBtn.style.opacity = 1;
+          dynamicMicrocopy.style.opacity = 1;
+        }, 200);
+      });
+    });
+
+    // 6. Grass Canvas
+    const canvas = document.getElementById('grassCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, blades = [], t = 0;
+    
+    let mouse = { x: null, y: null, radius: 120 };
+    window.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      buildBlades();
+    }
+
+    function buildBlades() {
+      blades = [];
+      const n = Math.floor(W * 0.58);
+      for(let i = 0; i < n; i++) {
+        const wild = Math.random() > 0.45;
+        blades.push({
+          x: Math.random() * W,
+          h: wild ? 60 + Math.random() * 140 : 18 + Math.random() * 40,
+          w: 0.7 + Math.random() * 1.6,
+          phase: Math.random() * Math.PI * 2,
+          spd: 0.22 + Math.random() * 0.8,
+          sway: wild ? 8 + Math.random() * 18 : 2 + Math.random() * 4,
+          op: 0.3 + Math.random() * 0.5,
+          hue: wild ? 84 + Math.random() * 32 : 58 + Math.random() * 26,
+          sat: wild ? 20 + Math.random() * 30 : 10 + Math.random() * 20,
+          wild: wild
+        });
+      }
+      blades.sort((a,b) => a.h - b.h);
+    }
+
+    function drawBlade(b) {
+      let windSway = Math.sin(t * b.spd + b.phase) * b.sway;
+      
+      if (mouse.x !== null) {
+        const dx = b.x - mouse.x;
+        const dy = H - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          const direction = dx > 0 ? 1 : -1;
+          windSway += direction * force * b.sway * 4.5;
+        }
+      }
+
+      const segs = 6;
+      ctx.beginPath();
+      ctx.moveTo(b.x, H);
+      for(let s = 1; s <= segs; s++) {
+        const p = s/segs, c = p*p;
+        const px = b.x + windSway*c, py = H - b.h*p;
+        if(s===1){ ctx.lineTo(px,py); }
+        else {
+          const pp=(s-1)/segs, pc=pp*pp;
+          ctx.quadraticCurveTo(b.x+windSway*(pc+c)/2, H-b.h*(pp+p)/2, px, py);
+        }
+      }
+      const l = b.wild ? 28+Math.random()*8 : 38+Math.random()*10;
+      ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${l}%,${b.op})`;
+      ctx.lineWidth = b.w;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+
+    function frame() {
+      ctx.clearRect(0,0,W,H);
+      t += 0.0065;
+      blades.forEach(drawBlade);
+      
+      const g = ctx.createLinearGradient(0,H*0.55,0,H);
+      g.addColorStop(0,'rgba(244,242,237,0)');
+      g.addColorStop(1,'rgba(244,242,237,0.22)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,H*0.55,W,H*0.45);
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', resize, {passive:true});
+    resize();
+    frame();
+  </script>
+</body>
+</html>

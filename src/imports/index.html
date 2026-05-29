@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Ivan Lewis — Writer, Director & Brand Strategist</title>
+  <meta name="description" content="Cinematic storytelling, written by an auteur, accelerated by intelligence. I combine screenplay writing, film directing, and generative AI to build premium brand narratives.">
+  <meta name="keywords" content="Ivan Lewis, Writer, Director, Brand Strategy, Dubai, Mumbai, Creative Director, Gen AI Advertising, Cinematic Storytelling">
+  <meta name="author" content="Ivan Lewis">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ivan Lewis — Writer, Director & Brand Strategist">
+  <meta property="og:description" content="Cinematic storytelling, written by an auteur, accelerated by intelligence.">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  
+  <!-- Film Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Navigation Bar -->
+  <nav id="nav">
+    <a href="#" class="nav-wordmark">Ivan Lewis</a>
+    <ul class="nav-links">
+      <li><a href="#manifesto" id="nav-manifesto-link">philosophy</a></li>
+      <li><a href="#studio" id="nav-studio-link">studio</a></li>
+      <li><a href="#services" id="nav-services-link">services</a></li>
+      <li><a href="#reel" id="nav-reel-link">reel</a></li>
+      <li><a href="#about" id="nav-about-link">about</a></li>
+      <li><a href="#connect" id="nav-connect-link">connect</a></li>
+    </ul>
+    <a href="#connect" class="nav-cta-btn" id="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="grassCanvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge reveal">Auteur · Creative Director</span>
+      <h1 class="hero-name">Tools change.<br>The human question does not.</h1>
+      <p class="hero-role">Generative AI can scale content, but it cannot find a brand's soul. I write screenplays, direct films, and advise brands that need an authentic human voice.</p>
+      
+      <div class="hero-actions">
+        <a href="#connect" class="btn btn-primary" id="hero-btn-primary">Initiate Project</a>
+        <a href="#connect" class="btn btn-secondary" id="hero-btn-secondary">Book a Call</a>
+      </div>
+    </div>
+    <span class="hero-scroll">scroll to explore</span>
+  </section>
+
+  <!-- Rule -->
+  <div class="rule"></div>
+
+  <!-- Manifesto / Philosophy Section -->
+  <section class="section-manifesto" id="manifesto">
+    <div class="manifesto-container">
+      <span class="section-label reveal">philosophy</span>
+      <blockquote class="manifesto-text reveal">
+        "Every brand problem is a story problem. The identity work and the narrative work are the same work.
+        <br><br>
+        Generative AI can create a thousand images in seconds. But it doesn't know why a child lies face-down in the grass, completely absorbed in an earthworm. It doesn't know why we keep texting numbers belonging to people who are gone.
+        <br><br>
+        We use intelligence to accelerate execution, but we rely on cinema to remember who we are."
+      </blockquote>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Studio / Portfolio Section -->
+  <section class="section-studio" id="studio">
+    <div class="studio-header">
+      <span class="section-label reveal">studio</span>
+      <h2 class="section-heading reveal">Selected Narrative Works</h2>
+    </div>
+
+    <!-- Accordion Work Entries -->
+    <div class="work-list">
+      
+      <!-- Entry 1 -->
+      <div class="work-entry reveal" id="e1">
+        <div class="work-header" onclick="toggleWork('e1')">
+          <div class="work-title-row">
+            <h3 class="work-title">The Last Message</h3>
+            <span class="work-format">screenplay / IP development</span>
+          </div>
+          <p class="work-question">What happens to the words people were saving for later, and never sent?</p>
+          <div class="work-footer-row">
+            <span class="work-date">feb 2026</span>
+            <span class="work-toggle">+</span>
+          </div>
+        </div>
+        
+        <div class="work-trail">
+          <div class="trail-point">
+            <span class="trail-label">the seed</span>
+            <div class="trail-content">A conversation about grief. Someone mentioned they still texted their dead father's number sometimes. Not expecting a reply. Just because the habit had not stopped.</div>
+          </div>
+          <div class="trail-point is-question">
+            <span class="trail-label">the question</span>
+            <div class="trail-content">What if the reply came?</div>
+          </div>
+          <div class="trail-point">
+            <span class="trail-label">the material</span>
+            <div class="trail-content">
+              <p class="trail-pullquote">"This technology does not create the emotions people could not express. It just removes the excuse for not finding the words."</p>
+              <span class="trail-source">observation notes, 2025</span>
+              <br>
+              News stories about grief tech startups. The quiet industry forming around loss and digital presence. None of it felt like the real thing yet.
+            </div>
+          </div>
+          <div class="trail-point is-underneath">
+            <span class="trail-label">underneath</span>
+            <div class="trail-content">A story about the damage done by things left unsaid, and what it means when a service offers to say them for you.</div>
+          </div>
+          <div class="trail-point is-pivot">
+            <span class="trail-label">the pivot</span>
+            <div class="trail-content">The first draft made the service the villain. That was too easy. The real question was not whether it was ethical. It was whether the son deserved to know which messages were real. The script got harder once the villain disappeared.</div>
+          </div>
+          <div class="trail-point is-thing">
+            <span class="trail-label">the thing</span>
+            <div class="trail-content">
+              Registered screenplay. 18 pages. SWA India, Feb 2026.
+              <br>
+              <div class="trail-links-row">
+                <a href="#" class="trail-link" id="link-script-e1">read the script</a>
+                <a href="https://www.hereafter.ai" target="_blank" rel="noopener" class="trail-link" id="link-startup-e1">the service now exists</a>
+              </div>
+              <span class="trail-status">seeking production</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="work-entry reveal" id="e2">
+        <div class="work-header" onclick="toggleWork('e2')">
+          <div class="work-title-row">
+            <h3 class="work-title">Maati Kona Chi?</h3>
+            <span class="work-format">short film · marathi</span>
+          </div>
+          <p class="work-question">Who decides what gets to grow, and what gets cut?</p>
+          <div class="work-footer-row">
+            <span class="work-date">nov 2025</span>
+            <span class="work-toggle">+</span>
+          </div>
+        </div>
+        
+        <div class="work-trail">
+          <div class="trail-point">
+            <span class="trail-label">the seed</span>
+            <div class="trail-content">Watching a child lie flat on a garden, face inches from the earth, completely absorbed in an earthworm. The adult world moving around her, indifferent.</div>
+          </div>
+          <div class="trail-point is-question">
+            <span class="trail-label">the question</span>
+            <div class="trail-content">Whose soil is it? And does the grass have a say?</div>
+          </div>
+          <div class="trail-point">
+            <span class="trail-label">the material</span>
+            <div class="trail-content">
+              <p class="trail-pullquote">"Bichara gavat… vaadhlay ki khush hot asel." <br><span style="font-size: 13px; opacity: 0.7;">(Poor grass… it must feel happy when it grows.)</span></p>
+              <span class="trail-source">Chinni, six years old, script excerpt</span>
+              <br>
+              The idea that wildness is not disorder. That something growing beyond its assigned boundary might simply be alive.
+            </div>
+          </div>
+          <div class="trail-point is-underneath">
+            <span class="trail-label">underneath</span>
+            <div class="trail-content">Belonging. Who inherits a place. What gets preserved and what gets managed out of existence.</div>
+          </div>
+          <div class="trail-point is-pivot">
+            <span class="trail-label">the pivot</span>
+            <div class="trail-content">The script kept wanting to be written in English. Resisted it each time. The question only existed properly in Marathi. Some things cannot be translated without losing the argument.</div>
+          </div>
+          <div class="trail-point is-thing">
+            <span class="trail-label">the thing</span>
+            <div class="trail-content">
+              Registered screenplay. 9 pages. SWA India, Nov 2025. Ivan Lewis writing and directing.
+              <br>
+              <span class="trail-status">pre-production 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 3 -->
+      <div class="work-entry reveal" id="e3">
+        <div class="work-header" onclick="toggleWork('e3')">
+          <div class="work-title-row">
+            <h3 class="work-title">Current Engagements</h3>
+            <span class="work-format">brand strategy & narrative advisory</span>
+          </div>
+          <p class="work-question">What does a brand sound like before it knows what it is?</p>
+          <div class="work-footer-row">
+            <span class="work-date">ongoing</span>
+            <span class="work-toggle">+</span>
+          </div>
+        </div>
+        
+        <div class="work-trail">
+          <div class="trail-point">
+            <span class="trail-label">the seed</span>
+            <div class="trail-content">Three briefs arriving at the same time. A communications boutique in Dubai finding its footing. A spice blend learning what it stands for. A food startup deciding what kind of company it wants to become.</div>
+          </div>
+          <div class="trail-point is-question">
+            <span class="trail-label">the question</span>
+            <div class="trail-content">What does a brand sound like before it knows what it is?</div>
+          </div>
+          <div class="trail-point is-underneath">
+            <span class="trail-label">underneath</span>
+            <div class="trail-content">Every brand problem is a story problem. The identity work and the narrative work are the same work. We strip away corporate buzzwords to build authentic human connections.</div>
+          </div>
+          <div class="trail-point is-thing">
+            <span class="trail-label">the thing</span>
+            <div class="trail-content">
+              Brand identity. Narrative direction. Creative strategy. Three clients, three cities.
+              <br>
+              <span class="trail-status">active 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 4 (Placeholder) -->
+      <div class="work-entry placeholder reveal">
+        <div class="work-header">
+          <div class="work-title-row">
+            <h3 class="work-title">Something is forming.</h3>
+            <span class="work-format">—</span>
+          </div>
+          <p class="work-question">Not ready to be named yet.</p>
+          <div class="work-footer-row">
+            <span class="work-date">—</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Services Section -->
+  <section class="section-services" id="services">
+    <div class="services-header">
+      <span class="section-label reveal">services</span>
+      <h2 class="section-heading reveal">Capabilities & Engagement Models</h2>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <h3 class="service-title">Creative Direction & Advisory</h3>
+        <p class="service-desc">Joining CMOs and Executive Creative Directors (ECDs) as a senior external partner. I oversee campaigns, frame aesthetic directions, and keep execution aligned with core strategic truth. Available for select retainer and project consultancies.</p>
+      </div>
+      
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <h3 class="service-title">Gen AI Cinematic Production</h3>
+        <p class="service-desc">Creating cinematic-grade brand spots, launch trailers, and mood reels using generative AI tools. Blending cutting-edge technology with filmmaker-level composition, lighting, editing, and sound design. Rapid turnaround, zero production bloat.</p>
+      </div>
+      
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <h3 class="service-title">Screenplay & IP Writing</h3>
+        <p class="service-desc">Writing high-concept narrative screenplays, script treatments, brand documentaries, and original series Bible structures. Focused on creating compelling character arcs and emotional resonance that keeps audiences watching.</p>
+      </div>
+      
+      <div class="service-card reveal">
+        <span class="service-num">04</span>
+        <h3 class="service-title">Brand Narrative Strategy</h3>
+        <p class="service-desc">Finding a brand's true voice before it touches design. We construct verbal identity books, brand constitutions, taglines, and key messaging frameworks. No corporate fluff—just absolute, human clarity.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Immersive Cinematic Reel Section (Dark Mode) -->
+  <section class="section-reel" id="reel">
+    <span class="section-label reveal">reel</span>
+    <h2 class="reel-heading reveal">Cinematic Vision</h2>
+    
+    <div class="reel-container reveal">
+      <div class="reel-video-mockup">
+        <!-- Overlay Play Button -->
+        <div class="play-trigger">
+          <div class="play-btn">
+            <span class="play-icon">▶</span>
+          </div>
+          <p class="reel-title">Twenty years. One edit.</p>
+          <p class="reel-sub">assembling · 2026</p>
+        </div>
+        <!-- Background Ambient Video Canvas/Gradient -->
+        <div class="reel-gradient-bg"></div>
+      </div>
+    </div>
+
+    <div class="reel-divider reveal"></div>
+
+    <div class="reel-second-section reveal">
+      <span class="reel-second-tag">generated &middot; directed &middot; scripted</span>
+      
+      <div class="reel-container reveal" style="margin-top: 2rem;">
+        <div class="reel-video-mockup secondary-reel">
+          <div class="play-trigger">
+            <div class="play-btn">
+              <span class="play-icon">▶</span>
+            </div>
+            <p class="reel-title" style="font-size:clamp(20px,3vw,34px);">A different kind of eye.</p>
+            <p class="reel-sub">generative work &middot; assembling &middot; 2026</p>
+          </div>
+          <div class="reel-gradient-bg secondary-bg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section-about" id="about">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <span class="section-label">about</span>
+        <div class="about-text">
+          <p>The question has always been the same. Not what to make, but why this, why now, why will anyone care a year from now. Everything else gets figured out when the why gets answered honestly.</p>
+          <p>I combine the structural discipline of a traditional screenwriter and director with the technical literacy of generative AI systems. By utilizing AI not as a cheap content factory, but as a conceptual accelerator, I help modern brands build narratives that are felt deeply.</p>
+          <p>Dividing my time between Mumbai and Dubai, I work as an independent consultant, director, and creative partner. Full-time engagements are accepted exclusively when values and artistic directions align.</p>
+        </div>
+      </div>
+      
+      <div class="about-right reveal">
+        <span class="currently-label">currently active</span>
+        <div class="currently-list">
+          <div class="currently-item">
+            <span class="currently-type">writing</span>
+            <span class="currently-desc">Narrative screenplays. Brand IP treatments.</span>
+          </div>
+          <div class="currently-item">
+            <span class="currently-type">directing</span>
+            <span class="currently-desc">Maati Kona Chi, short film, in pre-production.</span>
+          </div>
+          <div class="currently-item">
+            <span class="currently-type">advising</span>
+            <span class="currently-desc">Brand narrative, Dubai. Narrative system design, Mumbai.</span>
+          </div>
+          <div class="currently-item">
+            <span class="currently-type">exploring</span>
+            <span class="currently-desc">What storytelling looks like when the tools keep changing but the truth does not.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Conversion & Diagnostic Lead Capture (High Converting UI) -->
+  <section class="section-conversion" id="connect">
+    <div class="conversion-grid">
+      <div class="conversion-left reveal">
+        <h2 class="contact-heading">If something here stayed with you, let's talk.</h2>
+        <p class="contact-note">The best projects start with one honest question. Choose your project track, and let's find the answer.</p>
+        
+        <!-- Social Profiles & Direct Contacts -->
+        <ul class="contact-links">
+          <li class="contact-link-item">
+            <a href="mailto:lastgoodtaste@gmail.com" id="direct-email">
+              lastgoodtaste@gmail.com
+              <span class="link-arrow">→</span>
+            </a>
+          </li>
+          <li class="contact-link-item">
+            <a href="https://linkedin.com/in/ivan-lewis/" target="_blank" rel="noopener" id="social-linkedin">
+              linkedin
+              <span class="link-arrow">→</span>
+            </a>
+          </li>
+          <li class="contact-link-item">
+            <a href="https://instagram.com" target="_blank" rel="noopener" id="social-instagram">
+              instagram
+              <span class="link-arrow">→</span>
+            </a>
+          </li>
+          <li class="contact-link-item">
+            <a href="#" target="_blank" id="social-substack">
+              substack &middot; coming soon
+              <span class="link-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Interactive Lead Capture Form / Card -->
+      <div class="conversion-right reveal">
+        <div class="lead-selector-card">
+          <span class="mono-label">diagnostic funnel</span>
+          <h3 class="card-title">What are we building?</h3>
+          
+          <div class="lead-options">
+            <label class="lead-option-label" id="label-track-a">
+              <input type="radio" name="project-track" value="call" checked>
+              <div class="option-design"></div>
+              <div class="option-content">
+                <span class="option-title">Cinematic Ad Spot / Immediate Brand Campaign</span>
+                <span class="option-desc">Active timeline (< 30 days) and a defined production budget (Direct booking).</span>
+              </div>
+            </label>
+            
+            <label class="lead-option-label" id="label-track-b">
+              <input type="radio" name="project-track" value="enquiry">
+              <div class="option-design"></div>
+              <div class="option-content">
+                <span class="option-title">Strategy, Writing, or General Enquiry</span>
+                <span class="option-desc">Bespoke strategy workshops, screenwriting consulting, or exploratory pitches.</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Dynamic CTA Container -->
+          <div class="cta-dynamic-container">
+            <a href="https://calendly.com/ivanlewis/" target="_blank" rel="noopener" class="btn btn-primary btn-block" id="dynamic-cta-btn">Book 1:1 Strategy Call</a>
+            <p class="cta-microcopy" id="dynamic-cta-microcopy">Connects to Calendly. Select a 15-minute window for a strategic brief (Budgets over $10k).</p>
+          </div>
+
+          <div class="nda-badge">
+            <span class="lock-icon">🔒</span> All details submitted are protected under automatic mutual NDA.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-note">Ivan Lewis</span>
+    <span class="footer-note">Mumbai &middot; Dubai &middot; ivanlewis.net</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // 1. Custom Interactive Cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    
+    document.querySelectorAll('a, button, .work-header, .lead-option-label, input[type="radio"]').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    });
+
+    // 2. Frosted Navbar on Scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, {passive: true});
+
+    // 3. Scroll Reveal Engine
+    const revealElements = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((entry, idx) => {
+        if(entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 60);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
+    
+    revealElements.forEach(el => obs.observe(el));
+
+    // 4. Accordion Toggle for Work Entries
+    function toggleWork(id) {
+      const entry = document.getElementById(id);
+      const isOpen = entry.classList.contains('open');
+      document.querySelectorAll('.work-entry').forEach(e => e.classList.remove('open'));
+      if(!isOpen) entry.classList.add('open');
+    }
+
+    // 5. Dynamic Lead CTA Selection Script
+    const trackRadios = document.querySelectorAll('input[name="project-track"]');
+    const dynamicBtn = document.getElementById('dynamic-cta-btn');
+    const dynamicMicrocopy = document.getElementById('dynamic-cta-microcopy');
+
+    const ctaConfigs = {
+      call: {
+        text: "Book 1:1 Strategy Call",
+        url: "https://calendly.com/ivanlewis/",
+        microcopy: "Connects to Calendly. Select a 15-minute window for a strategic brief (Budgets over $10k)."
+      },
+      enquiry: {
+        text: "Fill out Enquiry Form",
+        url: "https://docs.google.com/forms/d/1a9raKLvtxup6TMqBxU0cJJDh-tk7LHVs3XjM0q6cUTI/edit",
+        microcopy: "Connects to Google Forms. Complete our 3-minute project survey to review fit and timelines."
+      }
+    };
+
+    trackRadios.forEach(radio => {
+      radio.addEventListener('change', e => {
+        const val = e.target.value;
+        const config = ctaConfigs[val];
+        
+        // Dynamic Fade effect
+        dynamicBtn.style.opacity = 0;
+        dynamicMicrocopy.style.opacity = 0;
+        
+        setTimeout(() => {
+          dynamicBtn.textContent = config.text;
+          dynamicBtn.setAttribute('href', config.url);
+          dynamicMicrocopy.textContent = config.microcopy;
+          
+          dynamicBtn.style.opacity = 1;
+          dynamicMicrocopy.style.opacity = 1;
+        }, 200);
+      });
+    });
+
+    // 6. Interactive Wind-blown Grass Canvas Simulation
+    const canvas = document.getElementById('grassCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, blades = [], t = 0;
+    
+    // Mouse interaction tracking
+    let mouse = { x: null, y: null, radius: 120 };
+    window.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      buildBlades();
+    }
+
+    function buildBlades() {
+      blades = [];
+      const n = Math.floor(W * 0.58);
+      for(let i = 0; i < n; i++) {
+        const wild = Math.random() > 0.45;
+        blades.push({
+          x: Math.random() * W,
+          h: wild ? 60 + Math.random() * 140 : 18 + Math.random() * 40,
+          w: 0.7 + Math.random() * 1.6,
+          phase: Math.random() * Math.PI * 2,
+          spd: 0.22 + Math.random() * 0.8,
+          sway: wild ? 8 + Math.random() * 18 : 2 + Math.random() * 4,
+          op: 0.3 + Math.random() * 0.5,
+          hue: wild ? 84 + Math.random() * 32 : 58 + Math.random() * 26,
+          sat: wild ? 20 + Math.random() * 30 : 10 + Math.random() * 20,
+          wild: wild
+        });
+      }
+      blades.sort((a,b) => a.h - b.h);
+    }
+
+    function drawBlade(b) {
+      // Wind sway base
+      let windSway = Math.sin(t * b.spd + b.phase) * b.sway;
+      
+      // Mouse interaction physics (pushing grass aside)
+      if (mouse.x !== null) {
+        const dx = b.x - mouse.x;
+        const dy = H - mouse.y; // H is baseline, grass grows upward
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          const direction = dx > 0 ? 1 : -1;
+          windSway += direction * force * b.sway * 4.5;
+        }
+      }
+
+      const segs = 6;
+      ctx.beginPath();
+      ctx.moveTo(b.x, H);
+      for(let s = 1; s <= segs; s++) {
+        const p = s/segs, c = p*p;
+        const px = b.x + windSway*c, py = H - b.h*p;
+        if(s===1){ ctx.lineTo(px,py); }
+        else {
+          const pp=(s-1)/segs, pc=pp*pp;
+          ctx.quadraticCurveTo(b.x+windSway*(pc+c)/2, H-b.h*(pp+p)/2, px, py);
+        }
+      }
+      const l = b.wild ? 28+Math.random()*8 : 38+Math.random()*10;
+      ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${l}%,${b.op})`;
+      ctx.lineWidth = b.w;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+
+    function frame() {
+      ctx.clearRect(0,0,W,H);
+      t += 0.0065;
+      blades.forEach(drawBlade);
+      
+      // Foreground gradient shading
+      const g = ctx.createLinearGradient(0,H*0.55,0,H);
+      g.addColorStop(0,'rgba(244,242,237,0)');
+      g.addColorStop(1,'rgba(244,242,237,0.22)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,H*0.55,W,H*0.45);
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', resize, {passive:true});
+    resize();
+    frame();
+  </script>
+</body>
+</html>
