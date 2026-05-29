@@ -67,6 +67,16 @@ export function ReelSection() {
           >
             Made without a crew.
           </p>
+          <p
+            className="text-[9px] font-light tracking-[0.14em] mt-5"
+            style={{
+              fontFamily: 'var(--font-family-mono)',
+              fontWeight: 300,
+              color: '#a8a49b',
+            }}
+          >
+            assembling · 2026
+          </p>
         </div>
       </div>
     </section>
