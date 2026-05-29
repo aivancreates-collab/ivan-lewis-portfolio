@@ -35,8 +35,8 @@ export function InteractiveConnectSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <label
-            className={`p-6 border cursor-pointer transition-all duration-300 reveal ${
-              selectedTrack === 'call' ? 'border-text bg-[rgba(232,180,184,0.05)]' : 'border-border'
+            className={`p-6 border-2 cursor-pointer transition-all duration-300 reveal flex items-start ${
+              selectedTrack === 'call' ? 'border-text bg-[rgba(232,180,184,0.1)]' : 'border-border'
             }`}
             data-interactive
           >
@@ -46,10 +46,11 @@ export function InteractiveConnectSection() {
               value="call"
               checked={selectedTrack === 'call'}
               onChange={() => setSelectedTrack('call')}
-              className="mr-3"
+              className="mr-3 mt-1"
+              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
             />
             <span style={{ fontFamily: 'var(--font-family-serif)' }}>
-              <strong>Strategy Call</strong>
+              <strong className="text-[16px]">Strategy Call</strong>
               <div className="text-[13px] text-text-secondary mt-3" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Quick brief for founders and brand leaders.
               </div>
@@ -57,8 +58,8 @@ export function InteractiveConnectSection() {
           </label>
 
           <label
-            className={`p-6 border cursor-pointer transition-all duration-300 reveal ${
-              selectedTrack === 'enquiry' ? 'border-text bg-[rgba(232,180,184,0.05)]' : 'border-border'
+            className={`p-6 border-2 cursor-pointer transition-all duration-300 reveal flex items-start ${
+              selectedTrack === 'enquiry' ? 'border-text bg-[rgba(232,180,184,0.1)]' : 'border-border'
             }`}
             data-interactive
           >
@@ -68,10 +69,11 @@ export function InteractiveConnectSection() {
               value="enquiry"
               checked={selectedTrack === 'enquiry'}
               onChange={() => setSelectedTrack('enquiry')}
-              className="mr-3"
+              className="mr-3 mt-1"
+              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
             />
             <span style={{ fontFamily: 'var(--font-family-serif)' }}>
-              <strong>Project Enquiry</strong>
+              <strong className="text-[16px]">Project Enquiry</strong>
               <div className="text-[13px] text-text-secondary mt-3" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 For campaigns, strategy, creative direction, or film work. 3-minute form.
               </div>
